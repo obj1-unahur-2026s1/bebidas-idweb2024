@@ -1,9 +1,41 @@
-import example.pepita
+// Objetos I //
+// Inti Fernandez //
+// 2026 //
 
-describe "group of tests for pepita" {
+import bebidas.*
+import tito.*
 
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
+describe "Test de Tito" {
+  test "tito consume 10 de whisky" {
+    tito.consumir(10, whisky)
+    assert.equals(whisky, tito.sustanciaActual())
   }
 
+  test "Su dosis es 10" {
+    tito.consumir(10,whisky)
+    assert.equals(10, tito.dosisConsumida())
+  }
+
+  test "Calculo de velocidad correcta" {
+    tito.consumir(10,whisky)
+    assert.equals(2.44, tito.velocidad().truncate(2))
+  }
+
+  test "Calculando estado de Tito al beber whisky(Sueño-Mareo-Jaqueca = TRUE)" {
+    tito.consumir(10, whisky)
+    assert.equals(true, tito.sueño())
+    assert.equals(true, tito.mareo())
+    assert.equals(true, tito.jaqueca())
+  }
+
+  test "Calculando estado de Tito al beber terere(Estreñimiento = False | Diuresis = True)" {
+    tito.consumir(10, terere)
+    assert.equals(false, tito.estreñimiento())
+    assert.equals(true, tito.diuresis())
+  }
+
+  test "calculando signos vitales al beber cianuro. MUERE" {
+    tito.consumir(10, cianuro)
+    assert.equals(false, tito.signosVitales())
+  }
 }
